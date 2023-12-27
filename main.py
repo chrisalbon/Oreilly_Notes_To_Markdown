@@ -22,12 +22,11 @@ def write_markdown(annotations, output_file="oreilly-annotations.md"):
             highlight = annotation["Highlight"].strip()
             book_title = annotation["Book Title"].strip()
             chapter_title = annotation["Chapter Title"].strip()
-            year = annotation["Year"].strip()
-            bookstore_link = annotation["Bookstore Link"].strip()
+            book_link = annotation["Book URL"].strip()
             md_file.write(f"## {note}\n")
             md_file.write(f"\n")
             md_file.write(
-                f'> "{highlight}" ([{book_title}, {chapter_title}]({bookstore_link}), {year})\n\n'
+                f'> "{highlight}" ([{book_title}, {chapter_title}]({book_link}))\n\n'
             )
 
 
