@@ -2,7 +2,6 @@
 # writes the annotations in Markdown format to an output file.
 
 import csv
-import requests
 from bs4 import BeautifulSoup
 
 
@@ -18,16 +17,17 @@ def read_csv(file_name):
 def write_markdown(annotations, output_file="oreilly-annotations.md"):
     with open(output_file, "w", encoding="utf-8") as md_file:
         for annotation in annotations:
-            note = annotation["Personal Note"]
-            highlight = annotation["Highlight"]
-            book_title = annotation["Book Title"]
-            chapter_title = annotation["Chapter Title"]
-            year = annotation["Year"]
-            amazon = annotation["Amazon"]
-            md_file.write(f"> #### {note}\n")
-            md_file.write(f">\n")
+            print(annotation)
+            note = annotation["Personal Note"].strip()
+            highlight = annotation["Highlight"].strip()
+            book_title = annotation["Book Title"].strip()
+            chapter_title = annotation["Chapter Title"].strip()
+            year = annotation["Year"].strip()
+            bookstore_link = annotation["Bookstore Link"].strip()
+            md_file.write(f"## {note}\n")
+            md_file.write(f"\n")
             md_file.write(
-                f'> "{highlight}" ([{book_title}, {chapter_title}]({amazon}), {year})\n\n'
+                f'> "{highlight}" ([{book_title}, {chapter_title}]({bookstore_link}), {year})\n\n'
             )
 
 
