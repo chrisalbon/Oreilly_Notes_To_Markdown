@@ -31,6 +31,11 @@ def write_markdown(annotations, output_file="oreilly-annotations.md"):
 
 
 if __name__ == "__main__":
-    csv_file = "oreilly-annotations.csv"
-    annotations = read_csv(csv_file)
+    parser = argparse.ArgumentParser(description="Process some integers.")
+    parser.add_argument(
+        "--csv_file", default="oreilly-annotations.csv", help="CSV file to process"
+    )
+    args = parser.parse_args()
+
+    annotations = read_csv(args.csv_file)
     write_markdown(annotations)
