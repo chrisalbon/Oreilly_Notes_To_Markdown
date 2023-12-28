@@ -5,6 +5,9 @@ writes the annotations in Markdown format to an output file.
 import argparse
 import csv
 
+INPUT_FILE = "oreilly-annotations.csv"
+OUTPUT_FILE = "oreilly-annotations.md"
+
 
 def read_csv(file_name):
     """Reads a CSV file and returns a list of dictionaries."""
@@ -16,7 +19,7 @@ def read_csv(file_name):
     return annotation_list
 
 
-def write_markdown(annotations, output_file="oreilly-annotations.md"):
+def write_markdown(annotations, output_file=OUTPUT_FILE):
     """Writes a list of annotations to a Markdown file."""
     with open(output_file, "w", encoding="utf-8") as md_file:
         for annotation in annotations:
@@ -34,9 +37,7 @@ def write_markdown(annotations, output_file="oreilly-annotations.md"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process some integers.")
-    parser.add_argument(
-        "--csv_file", default="oreilly-annotations.csv", help="CSV file"
-    )
+    parser.add_argument("--csv_file", default=INPUT_FILE, help="CSV file")
     args = parser.parse_args()
 
     annotations_file = read_csv(args.csv_file)
